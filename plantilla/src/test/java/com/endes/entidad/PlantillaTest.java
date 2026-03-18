@@ -2,6 +2,8 @@ package com.endes.entidad;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -11,11 +13,12 @@ import org.junit.jupiter.api.Test;
  */
 class PlantillaTest {
     private Plantilla plantilla;
-
+    Empleado empleado;
     @BeforeEach
     @DisplayName("Inicialización de la plantilla de empleados")
     void setUp() {
         plantilla = new Plantilla();
+        
     }
 
     /**
@@ -37,4 +40,26 @@ class PlantillaTest {
         // Verificar el mensaje de la excepción
         assertEquals("El empleado con DNI 11111111H ya está contratado", ex.getMessage());
     }
+    
+    @Test
+    void testcontratarEmpleado() {
+    	
+    	plantilla.contratarEmpleado(empleado);
+    
+		List<Empleado> resultado = plantilla.getEmpleadosPorNombre();
+	    assertEquals(1, resultado);
+    	
+    }
+    
+
+	@Test
+	void testGetEmpleadosPorNombreString() {
+
+		String resultadoEsperado = "Alejandro";
+		List<Empleado> resultado = plantilla.getEmpleadosPorNombre(resultadoEsperado);
+		assertEquals(resultadoEsperado, resultado);
+		
+		
+	}
+    
 }
